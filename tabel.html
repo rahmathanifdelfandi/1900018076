@@ -1,42 +1,92 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Tabel</title>
+	<title>Laporan Data Pendaftaran Kursus Mengendarai. Top Pass Driving</title>
+	<link rel="stylesheet" type="text/css" href="tampilan.css">
 </head>
 <body>
-	<table border="1">
-		<caption>Struk Pembayaran Diamond dan Skin Mobile Legend </caption>
-		<thead style="background: black; color: white">
-			<th>No</th>
-			<th>UserName</th>
-			<th>Harga</th>
-		</thead>
-		<tbody>
+
+	<header>
+		<img src="top-pass-driving.png" alt="Gambar Top-Pass-Driving">
+	</header>
+
+	<div class="menu">
+		<ul>
+			<a href="index.php">
+				<li>ISI FORMULIR PENDAFTARAN</li>
+			</a>
+			<a href="laporan.php">
+				<li>LAPORAN DATA PENDAFTARAN</li>
+			</a>
+		</ul>
+	</div>
+
+	<div class="konten">
+		
+		<div class="judul">
+			<h2>Laporan Data Pendaftaran</h2>
+		</div>
+
+		<table>
+
 			<tr>
-				<td>1.</td>
-				<td>2000 Diamond</td>
-				<td>Rp.500.000</td>
+				<th>No. Pendaftaran</th>
+				<th>Nama Pendaftar</th>
+				<th>Tanggal Lahir</th>
+				<th>Umur</th>
+				<th>Jenis Kelamin</th>
+				<th>Kursus</th>
+				<th>Pembimbing</th>
 			</tr>
-			<tr>
-				<td>2.</td>
-				<td>Skin Legend Lesley</td>
-				<td>Rp.2.000.000</td>
-			</tr>
-			<tr>
-				<td>3.</td>
-				<td>Skin S.A.B.E.R Layla</td>
-				<td>Rp900.000</td>
-			</tr>
-			<tr>
-				<td>4.</td>
-				<td>Skin Couple Gusion dan Lesley</td>
-				<td>Rp.3.150.000</td>
-			</tr>
-			<tr>
-				<td colspan="3">Total Harga</td>
-				<td>Rp.6.550.000</td>
-			</tr>
-		</tbody>
-	</table>
+
+			<?php
+
+				$OpenLaporan 	= fopen("laporan.txt", "r");
+
+				$i 				= 0;
+
+				$laporan 	= fgets($OpenLaporan);
+
+				if (empty($laporan)) {
+					echo "<tr>";
+					echo "<td colspan='8' class='kosong'> <b>! DATA PENDAFTARAN MASIH KOSONG !</b> </td>";
+					echo "</tr>";
+				}else{
+											
+					$arrayLaporan	= explode("+", $laporan);
+
+					$banyaknyaArray	= substr_count($laporan, "+");
+
+
+					while ( $i < $banyaknyaArray) {
+
+							echo "<tr>";
+							echo "<td>".$arrayLaporan[$i++]."</td>";
+							echo "<td>".$arrayLaporan[$i++]."</td>";
+							echo "<td>".$arrayLaporan[$i++]."</td>";
+							echo "<td>".$arrayLaporan[$i++]."</td>";
+							echo "<td>".$arrayLaporan[$i++]."</td>";
+							echo "<td>".$arrayLaporan[$i++]."</td>";
+							echo "<td>".$arrayLaporan[$i++]."</td>";
+							echo "<td>".$arrayLaporan[$i++]."</td>";
+							echo "<br />";
+							echo "</tr>";
+
+					}
+
+				}
+
+				fclose($OpenLaporan);
+
+			?>
+
+		</table>
+
+	</div>
+
+	<footer>
+		<h3>&copy; TOP PASS DRIVING Est.2020</h3>
+	</footer>
+
 </body>
 </html>
